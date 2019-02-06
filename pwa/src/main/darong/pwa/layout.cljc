@@ -4,4 +4,4 @@
 
 
 (rum/defc label [text]
-  [:div {:class "label"} text])
+  [:h1 {:class "label"} text])

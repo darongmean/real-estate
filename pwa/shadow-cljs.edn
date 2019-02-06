@@ -1,0 +1,17 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :dependencies
+ [[metosin/reitit-core "0.2.13"]
+  [rum "0.11.3"]]
+
+ :builds
+ {:dev {:target     :browser
+        :output-dir "public/js"
+        :asset-path "/js"
+        :modules    {:pwa {:entries [darong.dev.shell]}}
+        :devtools   {:http-root    "public"
+                     :http-port    3000}}}}

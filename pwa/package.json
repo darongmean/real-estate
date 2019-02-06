@@ -1,0 +1,15 @@
+{
+  "name": "darong.pwa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Darong Mean",
+  "license": "MIT",
+  "devDependencies": {
+    "shadow-cljs": "^2.7.25"
+  },
+  "dependencies": {
+    "create-react-class": "^15.6.3",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}

@@ -1,13 +1,13 @@
 (ns darong.dev.shell
   (:require
     [rum.core :as rum]
-    [darong.pwa.layout :as layout]))
+    [darong.pwa.template :as template]))
 
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
   (js/console.log "start")
-  (rum/mount (layout/label "Hello Rum2!") (.getElementById js/document "pwa")))
+  (rum/mount (template/Index "Hello Rum2!") (.getElementById js/document "pwa")))
 
 
 (defn ^:export init []

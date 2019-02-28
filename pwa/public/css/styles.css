@@ -6186,6 +6186,36 @@ table {
  * @import "utilities/skew-transforms";
  */
 
+.bg-img-chevron {
+  background-image: url("data:image/svg+xml;charset=utf8,\a%3Csvg width='8' height='12' xmlns='http://www.w3.org/2000/svg'%3E\a   %3Cpath d='M1 1l4.802 4.82L1 11' stroke='%23cccccc' stroke-width='2' fill='none' fill-rule='evenodd'/%3E\a%3C/svg%3E\a");
+}
+
+.bg-pos-y-center {
+  background-position-y: center;
+}
+
+.bg-pos-x-right {
+  background-position-x: right;
+}
+
+.bg-img-chevron-header {
+  background-image: url("data:image/svg+xml;charset=utf8,\a%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E\a   %3Cg fill='none' fill-rule='evenodd' stroke-width='2'%3E\a     %3Ccircle cx='10' cy='10' r='9' stroke='%23ECECEC'/%3E\a     %3Cpath stroke='%23085FF7' d='M6 8l4.001 4.001L14.09 8'/%3E\a   %3C/g%3E\a%3C/svg%3E\a");
+}
+
+.rotate-0 {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+}
+
+.rotate-180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.bg-img-title {
+  background-image: url("data:image/svg+xml;charset=utf8,\a%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'%3E\a     %3Cdefs%3E\a         %3Cpath id='a' d='M9 18h2v-2H9v2zm-1 1h4v-4H8v4zm1-7h2v-2H9v2zm-1 1h4V9H8v4zm8-12L4 6v17h16V6h-4V1zM6 7.332L14 4v4h4v13H6V7.332z'/%3E\a     %3C/defs%3E\a     %3Cg fill='none' fill-rule='evenodd'%3E\a         %3Cpath fill='%23FFD35C' d='M8 19h4v-4H8zM8 13h4V9H8z'/%3E\a         %3Cuse fill='%23000' xlink:href='%23a'/%3E\a     %3C/g%3E\a%3C/svg%3E\a");
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;

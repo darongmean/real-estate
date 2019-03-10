@@ -184,13 +184,140 @@
        [:input {:type "checkbox" :checked true}]]]]]])
 
 
+(rum/defc AreaHeader []
+  [:div {:class "bg-grey-light py-2"}
+   [:section {:class (str style/zoomed-font " bg-white")}
+    [:header {:class (str style/outer-margin " py-3 text-xl font-normal text-black")}
+     [:span {:class "bg-img-dollar bg-no-repeat bg-left pl-8 py-1"} "Area 9"]]
+    [:section {:class (str style/outer-margin " text-grey-darker pb-3 text-sm font-normal")}
+     [:p "109.7K data points reported"]
+     [:p {:class "pt-1"} "Updated on 3/7/19"]]
+    [:section {:class (str style/outer-margin " py-3")}
+     [:p {:class "text-grey-darker font-normal text-sm"} "Average rent"]
+     [:p
+      [:span {:class "text-black font-bold text-4xl"} "$15.21"]
+      [:span {:class "text-grey-darker font-normal text-lg"} " per month"]]]
+    [:section {:class (str style/outer-margin " py-3 ")}
+     [:p {:class "text-grey-darker font-normal text-sm"} "Rent distribution"]
+     [:ul {:class "mt-1 list-reset relative h-16"}
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "25.47852647357379%" :width "9.2%" :left "0.0%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "64.8812465700313%" :width "9.2%" :left "10.088999999999999%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm bg-green"
+            :style {:height "90.0%" :width "9.2%" :left "20.177999999999997%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "87.13963308321102%" :width "9.2%" :left "30.266999999999996%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "67.52112313949745%" :width "9.2%" :left "40.355999999999995%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "45.353413557835005%" :width "9.2%" :left "50.44499999999999%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "27.73509276853321%" :width "9.2%" :left "60.53399999999999%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "15.9343642264091%" :width "9.2%" :left "70.62299999999999%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "8.78125342288431%" :width "9.2%" :left "80.71199999999999%"}}]
+      [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+            :style {:height "4.708083644125027%" :width "9.2%" :left "90.80099999999999%"}}]]
+     [:div {:class "flex justify-between pt-1"}
+      [:p {:class "text-grey-darker font-normal text-xs"} "$7.25"]
+      [:p {:class "text-grey-darker font-normal text-xs"} "$30.45"]]]]])
+
+
+(rum/defc ExplainAreaStats []
+  [:div {:class "bg-grey-light pb-2"}
+   [:section {:class (str style/zoomed-font " bg-white py-3")}
+    [:header {:class (str style/outer-margin " text-lg font-bold text-black")}
+     "How much is rent in Area 9?"]
+    [:p {:class (str style/outer-margin " pt-3 font-normal text-sm")}
+     "The average rent for Area 9 is $15.21 per month.
+      Rent estimates are based on 109,723 data points submitted anonymously to NE by users,
+      and collected from past and present listings on NE in the past 36 months."]]])
+
+
+(rum/defc ListingsInArea []
+  [:div {:class "bg-grey-light pb-2"}
+   [:section {:class (str style/zoomed-font " bg-white")}
+    [:header {:class (str style/outer-margin " py-3 text-lg font-bold text-black")}
+     "Listings in Area 9"]
+    [:ul {:class "list-reset"}
+     [:li {:class (str style/outer-margin " py-3 border-t")}
+      [:a {:href "#" :class "no-underline flex justify-between items-center bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
+       [:p {:class "pr-1"}
+        [:span {:class "text-grey-darker text-sm font-light"} "01 "]
+        [:span {:class "text-black text-base"} "BKK How much is rent in Area 9?"]]
+       [:div
+        [:p {:class "text-black text-base font-bold"} "$12.34 "]
+        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
+     [:li {:class (str style/outer-margin " py-3 border-t")}
+      [:a {:href "#" :class "no-underline flex justify-between items-center bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
+       [:p {:class "pr-1"}
+        [:span {:class "text-grey-darker text-sm font-light"} "02 "]
+        [:span {:class "text-black text-base"} "BKK"]]
+       [:div
+        [:p {:class "text-black text-base font-bold"} "$12.34 "]
+        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
+     [:li {:class (str style/outer-margin " py-3 border-t")}
+      [:a {:href "#" :class "no-underline flex justify-between items-center bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
+       [:p {:class "pr-1"}
+        [:span {:class "text-grey-darker text-sm font-light"} "03 "]
+        [:span {:class "text-black text-base"} "BKK"]]
+       [:div
+        [:p {:class "text-black text-base font-bold"} "$12.34 "]
+        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
+     [:li {:class (str style/outer-margin " py-3 border-t")}
+      [:a {:href "#" :class "no-underline flex justify-between items-center bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
+       [:p {:class "pr-1"}
+        [:span {:class "text-grey-darker text-sm font-light"} "04 "]
+        [:span {:class "text-black text-base"} "BKK"]]
+       [:div
+        [:p {:class "text-black text-base font-bold"} "$12.34 "]
+        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
+     [:li {:class (str style/outer-margin " py-3 border-t")}
+      [:a {:href "#" :class "no-underline flex justify-between items-center bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
+       [:p {:class "pr-1"}
+        [:span {:class "text-grey-darker text-sm font-light"} "05 "]
+        [:span {:class "text-black text-base"} "BKK"]]
+       [:div
+        [:p {:class "text-black text-base font-bold"} "$12.34 "]
+        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
+     [:li {:class (str style/outer-margin " border-t")}
+      [:a {:href "#" :class "no-underline flex"}
+       [:p {:class "py-6 text-blue-dark text-sm"} "Show 10 more listings"]]]]]])
+
+
+(rum/defc Notes []
+  [:div {:class "bg-grey-light pb-2"}
+   [:section {:class (str style/zoomed-font " bg-white py-3")}
+    [:p {:class (str style/outer-margin " font-normal text-sm text-grey-dark")}
+     "Please note that all rental figures are approximations based upon third party submissions to NE.
+      These figures are given to the NE users for the purpose of generalized comparison only."]]])
+
+
 (rum/defc Index [text]
   [:div
    (Header)
-   (PopularLocation)
+   (AreaHeader)
+   (ExplainAreaStats)
+   (ListingsInArea)
    (Neighborhoods)
+   (Notes)
    (Language)
    (Footer)])
+
+
+(rum/defc AreaPage [text]
+  [:div
+   (Header)
+   (AreaHeader)
+   (ExplainAreaStats)
+   (ListingsInArea)
+   (Neighborhoods)
+   (Notes)
+   (Language)
+   (Footer)])
+
 
 (rum/defc Home [text]
   [:div

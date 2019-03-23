@@ -295,17 +295,149 @@
       These figures are given to the NE users for the purpose of generalized comparison only."]]])
 
 
+(rum/defc ItemDetailsHeader []
+  [:div {:class "bg-grey-light py-2"}
+   [:section {:class (str style/zoomed-font " bg-white")}
+    [:header {:class (str style/outer-margin " py-3")}
+     [:span {:class "text-xl font-bold text-black"}
+      "[3] bedrooms [rental/apartment] [in Neighborhood Name/near University Name]"]]
+    [:section {:class (str style/outer-margin " text-black pb-3 font-normal")}
+     [:p {:class "flex items-center"}
+      ;; TODO: pick more appropriate icon?
+      [:span {:class "bg-img-chevron bg-no-repeat bg-left pl-6 h-3"}]
+      [:span "3 bedrooms, 2 bathrooms, size 10m x 16m"]]
+     ;; TODO: add a marker icon?
+     [:p {:class "flex items-center mt-2"}
+      [:span {:class "bg-img-chevron bg-no-repeat bg-left pl-6 h-3"}]
+      [:span "St. 2 Phum Thmey, Dangkao, Dangkao, Phnom Penh"]]]
+    [:section {:class (str style/outer-margin " pb-3")}
+     [:div {:class "border p-3"}
+      [:p {:class "text-grey-darker font-normal text-sm my-2"} "Rent from this property description"]
+      [:p
+       [:span {:class "text-black font-bold text-4xl"} "$15.21"]
+       [:span {:class "text-grey-darker font-normal text-lg"} " per month" [:sup "*"]]]
+      [:p {:class "my-2"}
+       [:span {:class "bg-green-lightest p-1"} "▲ 4% above area average"]
+       [:span {:class "bg-img-money bg-no-repeat bg-left ml-1 pl-6"}]]]
+     [:div {:class "border border-t-0 p-3"}
+      [:p {:class "text-grey-darker font-normal text-sm my-2"}
+       [:span {:class "bg-img-money bg-no-repeat bg-left pl-6"}]
+       "Area average rent for similar properties"]
+      [:p
+       [:span {:class "text-black font-bold text-3xl"} "$15.21"]
+       [:span {:class "text-grey-darker font-normal text-lg"} " per month" [:sup "**"]]]]]
+    [:section {:class (str style/outer-margin " py-3 flex")}
+     [:a {:href  "#"
+          :class "no-underline text-blue-dark text-center w-full border-2 rounded-full border-blue-dark p-3"}
+      "Get more details"]]
+    [:section {:class (str style/outer-margin " py-3")}
+     [:div {:class "border rounded p-3 bg-grey-lighter"}
+      [:p {:class "text-grey-darker font-normal"}
+       [:sup "*"]
+       [:span "Updated on 03/01/2019."]]
+      [:p {:class "text-grey-darker font-normal"}
+       [:sup "**"]
+       [:span "Average rent is estimated from 99029 data points on NE."]]]]]])
+
+
+(rum/defc ItemComparison []
+  [:div {:class "bg-grey-light pb-2"}
+   [:section {:class (str style/zoomed-font " bg-white")}
+    [:header {:class (str style/outer-margin " pt-3 text-lg font-bold text-black")}
+     [:span {:class "bg-img-cup bg-no-repeat bg-left pl-8"} "Comparison"]]
+    [:div {:class (str style/outer-margin " pb-3 flex justify-around items-center")}
+     [:div {:class "w-2/5 flex flex-col items-center"}
+      [:div {:class "w-16 h-16 p-2"}
+       [:div {:class "bg-img-building bg-no-repeat bg-contain w-full h-full"}]]
+      [:span {:class "w-4/5 truncate text-sm font-normal"}
+       "[3] bedrooms [rental/apartment] [in Neighborhood Name/near University Name]"]]
+     [:span {:class "text-sm font-bold text-grey-dark"} "vs."]
+     [:div {:class "w-2/5 flex flex-col items-center"}
+      [:div {:class "bg-img-folder bg-no-repeat bg-contain w-16 h-16"}]
+      [:span {:class "text-sm font-normal"}
+       "area average"]]]
+    [:div {:class (str style/outer-margin " pb-3")}
+     [:table {:class "w-full"}
+      [:tbody
+       [:tr
+        [:th]
+        [:td
+         [:div {:class "bg-img-building bg-no-repeat bg-contain w-6 h-6 mx-auto"}]]
+        [:td]
+        [:td
+         [:div {:class "bg-img-folder bg-no-repeat bg-contain w-8 h-8 mx-auto"}]]]
+       [:tr
+        [:th {:class "w-auto text-left py-1"}
+         [:span {:class "text-sm font-normal"} "Bedrooms"]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "3"]]
+        [:td {:class "w-4 text-center"}
+         [:div {:class "bg-img-star bg-no-repeat bg-contain w-4 h-4"}]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "1"]]]
+       [:tr
+        [:th {:class "w-auto text-left py-1"}
+         [:span {:class "font-normal font-bold"}
+          [:span {:class "text-sm font-normal"} "Bathrooms"]]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "2"]]
+        [:td {:class "w-4 text-center"}
+         [:div {:class "bg-img-star bg-no-repeat bg-contain w-4 h-4"}]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "1"]]]
+       [:tr
+        [:th {:class "w-auto text-left py-1"}
+         [:span {:class "font-normal font-bold"}
+          [:span {:class "text-sm font-normal"} "Bathrooms"]]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "2"]]
+        [:td {:class "w-4 text-center"}
+         [:div {:class "bg-img-star bg-no-repeat bg-contain w-4 h-4"}]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "1"]]]
+       [:tr
+        [:th {:class "w-auto text-left py-1"}
+         [:span {:class "font-normal font-bold"}
+          [:span {:class "text-sm font-normal"} "Bathrooms"]]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal bg-yellow-lighter px-1"} "2"]]
+        [:td {:class "w-4 text-center"}
+         [:div {:class "bg-img-star bg-no-repeat bg-contain w-4 h-4"}]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "1"]]]
+       [:tr
+        [:th {:class "w-auto text-left py-1"}
+         [:span {:class "font-normal font-bold"}
+          [:span {:class "text-sm font-normal"} "Bathrooms"]]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal"} "2"]]
+        [:td {:class "w-4 text-center"}
+         [:div {:class "bg-img-star bg-no-repeat bg-contain w-4 h-4"}]]
+        [:td {:class "w-8 text-center"}
+         [:span {:class "text-sm font-normal bg-yellow-lighter px-1"} "5"]]]]]]]])
+
+
 (rum/defc Index [text]
   [:div
    (Header)
-   (AreaHeader)
-   (ExplainAreaStats)
+   (ItemDetailsHeader)
+   (ItemComparison)
    (ListingsInArea)
    (Neighborhoods)
    (Notes)
    (Language)
    (Footer)])
 
+(rum/defc DetailsPage [text]
+  [:div
+   (Header)
+   (ItemDetailsHeader)
+   (ItemComparison)
+   (ListingsInArea)
+   (Neighborhoods)
+   (Notes)
+   (Language)
+   (Footer)])
 
 (rum/defc AreaPage [text]
   [:div

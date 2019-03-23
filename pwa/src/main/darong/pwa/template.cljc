@@ -114,7 +114,7 @@
   [:div {:class "bg-grey-light pb-2"}
    [:section {:class (str style/zoomed-font " bg-white")}
     [:header {:class (str style/outer-margin " py-3 text-lg font-bold text-black")}
-     [:span {:class "bg-img-title bg-no-repeat bg-left pl-8"} "Phnom Penh Neighborhoods"]]
+     [:span {:class "bg-img-house bg-no-repeat bg-left pl-8"} "Phnom Penh Neighborhoods"]]
     [:ul {:class "list-reset"}
      [:li {:class (str style/outer-margin " py-3 border-t")}
       [:a {:href "#" :class "no-underline flex items-start bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
@@ -428,6 +428,7 @@
    (Language)
    (Footer)])
 
+
 (rum/defc DetailsPage [text]
   [:div
    (Header)
@@ -438,6 +439,7 @@
    (Notes)
    (Language)
    (Footer)])
+
 
 (rum/defc AreaPage [text]
   [:div

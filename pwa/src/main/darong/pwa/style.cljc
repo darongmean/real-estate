@@ -18,7 +18,17 @@
 (def zoomed-font "font-sans text-sm md:text-base lg:text-lg xl:text-xl")
 
 
-(def outer-margin "px-5")
+(def zoomed-font-1 "text-lg lg:text-2xl")
+
+
+(def zoomed-font-2 "text-base lg:text-3xl")
+
+
+(def outer-margin "px-5 lg:px-6")
+
 
 (def container
   (str outer-margin " " zoomed-font))
+
+(defn style [{:keys [sm lg]}]
+  (str sm " " lg))

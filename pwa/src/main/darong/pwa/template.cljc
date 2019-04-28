@@ -4,184 +4,469 @@
     [rum.core :as rum]))
 
 
+(def style-01
+  (style/style {:sm "bg-grey-light py-2"
+                :lg "lg:bg-grey-lighter lg:py-10"}))
+
+
+(def style-02
+  (style/style {:sm "bg-grey-light pb-2"
+                :lg "lg:bg-grey-lighter lg:pb-10"}))
+
+
+(def style-11
+  (str style/zoomed-font " bg-white container mx-auto"))
+
+
+(def style-21
+  (str style/outer-margin " " style/zoomed-font-1 " py-3 text-lg font-bold text-black"))
+
+
+(def style-22
+  (style/style {:sm "list-reset"
+                :lg "lg:flex lg:flex-wrap"}))
+
+
+(defn style-31 [bg-img]
+  (str bg-img " " "bg-no-repeat bg-left pl-8"))
+
+
 (rum/defc Header []
-  [:header {:class "bg-white pb-5"}
-   [:section {:class (str style/container " ")}
-    [:a {:href "#" :class "no-underline text-4xl text-grey-lightest font-bold font-serif"}
-     [:span {:class "text-blue-dark"} "N"]
-     [:span {:class "text-black"} "oobEstate"]]
-    [:input {:type        "search"
-             :placeholder "Search and compare rental properties"
-             :class       "appearance-none
-                     block
-                     w-full
-                     border-2
-                     border-blue-dark
-                     py-3
-                     px-4
-                     leading-tight
-                     text-sm
-                     focus:outline-none
-                     focus:bg-grey-lightest"}]]])
+  (let [style-11 (style/style {:sm "bg-white pb-5"
+                               :lg "lg:pb-12"})
+        style-21 (style/style {:sm "px-5 container mx-auto"
+                               :lg "lg:px-0 lg:bg-img-search lg:bg-no-repeat lg:bg-right-top"})
+        style-31 (style/style {:sm "hidden"
+                               :lg "lg:block lg:h-48 lg:flex lg:items-center lg:content-center"})
+        style-41 (style/style {:sm "w-full"
+                               :lg "lg:w-3/5 lg:mr-5"})
+        style-42 (style/style {:sm "hidden bg-blue-dark hover:bg-blue text-white text-base w-48 px-4 py-1 border border-blue-dark rounded-full"
+                               :lg "lg:block"})
+        style-51 (style/style {:sm "appearance-none block w-full border-2 border-blue-dark py-3 px-4 leading-tight text-sm rounded focus:outline-none focus:bg-grey-lightest"
+                               :lg "lg:border-grey"})]
+    [:header {:class style-11}
+     [:section {:class (str style/zoomed-font " " style-21)}
+      [:a {:href "#" :class "no-underline text-4xl text-grey-lightest font-bold font-serif"}
+       [:span {:class "text-blue-dark"} "N"]
+       [:span {:class "text-black"} "oobEstate"]]
+      [:div {:class style-31}
+       [:div
+        [:p {:class "text-4xl font-bold text-black"}
+         "Search and compare rental properties"]
+        [:p {:class "text-2xl text-grey-dark"}
+         "Over 500 million points of data"]]]
+      [:div {:class "flex"}
+       [:div {:class style-41}
+        [:input {:type        "search"
+                 :placeholder "Eg. BKK $500/m"
+                 :class       style-51}]]
+       [:button {:class style-42} "Search"]]]]))
 
 
 (rum/defc Footer []
-  [:footer {:class "bg-white"}
-   [:div {:class (str "flex justify-center p-6" " " style/container)}
-    [:p {:class                   "font-serif text-xs font-bold"
-         :dangerouslySetInnerHTML {:__html "&#9400; 2019 NoobEstate. All rights reserved."}}]]])
+  (let [style-11 (style/style {:lg "lg:bg-white"})
+        style-21 (style/style {:sm "container mx-auto"
+                               :lg "lg:flex lg:justify-between"})
+        style-31 (style/style {:sm "bg-grey-light pb-2"
+                               :lg "lg:bg-white lg:pt-6 lg:pb-6"})
+        style-41 (style/style {:sm "bg-white list-reset"
+                               :lg "lg:flex"})
+        style-51 (style/style {:sm "py-3 bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"
+                               :lg "lg:px-0 lg:py-0 lg:bg-img-none"})
+        style-52 (style/style {:sm "hidden"
+                               :lg "lg:block lg:mx-1"})
+        style-53 (style/style {:sm "py-3 border-t bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"
+                               :lg "lg:px-0 lg:py-0 lg:border-t-0 lg:bg-img-none"})
+        style-61 (style/style {:sm "no-underline"
+                               :lg "lg:underline"})]
+    [:footer {:class style-11}
+     [:div {:class style-21}
+      [:div {:class style-31}
+       [:ul {:class (str style/container " " style-41)}
+        [:li {:class style-51}
+         [:a {:href "#" :class style-61}
+          [:p {:class "text-black text-sm font-normal"} "ភាសាខ្មែរ"]]]
+        [:li {:class style-52}
+         [:p {:class "text-xs font-bold"} "-"]]
+        [:li {:class style-53}
+         [:a {:href "#" :class style-61}
+          [:p {:class "text-black text-sm font-normal"} "English"]]]]]
+      [:div {:class (str "flex justify-center p-6" " " style/container)}
+       [:p {:class                   "text-xs font-bold"
+            :dangerouslySetInnerHTML {:__html "&#9400; 2019 NoobEstate. All rights reserved."}}]]]]))
 
 
 (rum/defc PopularLocation []
-  [:div {:class "bg-grey-light py-2"}
-   [:section {:class (str style/zoomed-font " bg-white")}
-    [:header {:class (str style/outer-margin " py-3 text-lg font-bold text-black")}
-     [:span {:class "bg-img-title bg-no-repeat bg-left pl-8"} "Popular areas in Phnom Penh"]]
-    [:p {:class (str style/outer-margin " text-grey-darker pb-3 text-sm")}
-     [:a {:href "#" :class "no-underline text-grey-darker font-bold border-b-2 border-dashed"} "Average rent"]
-     " over "
-     [:span {:class "font-bold"} "500 million"]
-     " points of data in 12 months"]
-    [:em {:class "hidden"}
-     "disclaimer: Please note that all salary figures are approximations based upon third party
+  (let [style-32 (style/style {:sm "py-3 border-t"
+                               :lg "lg:w-1/2"})
+        style-33 (style/style {:sm "py-3 border-t"
+                               :lg "lg:border-l lg:w-1/2"})
+        style-34 (style/style {:sm "py-3 border-t"
+                               :lg "lg:hidden"})
+        style-35 (style/style {:sm "py-3 border-t"
+                               :lg "lg:w-1/4"})
+        style-36 (style/style {:sm "py-3 border-t"
+                               :lg "lg:border-l lg:w-1/4"})
+        style-41 (style/style {:sm "no-underline flex justify-between bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"
+                               :lg "lg:bg-img-none lg:pr-0 lg:items-center"})
+        style-51 (style/style {:sm "flex justify-between w-full"
+                               :lg "lg:flex-col lg:w-auto"})
+        style-52 (style/style {:sm "hidden"
+                               :lg "lg:block lg:w-48"})
+        style-53 (style/style {:sm "text-black text-sm font-normal"
+                               :lg "lg:hidden"})
+        style-61 (style/style {:lg "lg:flex lg:items-baseline lg:mt-5"})
+        style-71 (style/style {:sm "text-grey-darker text-sm"
+                               :lg "lg:mt-2"})
+        style-72 (style/style {:sm "text-black text-base font-bold"
+                               :lg "lg:text-3xl lg:mr-2"})]
+    [:div {:class style-01}
+     [:section {:class style-11}
+      [:header {:class style-21}
+       [:span {:class (style-31 "bg-img-title")} "Popular areas in Phnom Penh"]]
+      [:p {:class (str style/outer-margin " text-grey-darker pt-3 pb-6 text-sm")}
+       [:a {:href "#" :class "no-underline text-grey-darker font-bold border-b-2 border-dashed"} "Average rent"]
+       " over "
+       [:span {:class "font-bold"} "500 million"]
+       " points of data in 12 months"]
+      [:em {:class "hidden"}
+       "disclaimer: Please note that all salary figures are approximations based upon third party
          submissions to Indeed. These figures are given to the Indeed users for the purpose of
          generalized comparison only. Minimum wage may differ by jurisdiction and you should consult
           the employer for actual salary figures."]
-    [:ul {:class "list-reset"}
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div
-        [:p {:class "text-black text-base font-bold"} "BKK"]
-        [:p {:class "text-grey-darker text-sm"} "1,000 price reported"]]
-       [:div
-        [:p {:class "text-black text-base font-bold"} "$12.34 "]
-        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div
-        [:p {:class "text-black text-base font-bold"} "BKK"]
-        [:p {:class "text-grey-darker text-sm"} "1,000 price reported"]]
-       [:div
-        [:p {:class "text-black text-base font-bold"} "$3 "]
-        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div
-        [:p {:class "text-black text-base font-bold"} "BKK"]
-        [:p {:class "text-grey-darker text-sm"} "1,000 price reported"]]
-       [:div
-        [:p {:class "text-black text-base font-bold"} "$3 "]
-        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div
-        [:p {:class "text-black text-base font-bold"} "BKK"]
-        [:p {:class "text-grey-darker text-sm"} "1,000 price reported"]]
-       [:div
-        [:p {:class "text-black text-base font-bold"} "$3 "]
-        [:p {:class "text-grey-darker text-sm"} "/ month"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between items-center"}
-       [:p {:class "text-grey-darker text-sm"} "More popular areas in Phnom Penh"]
-       [:span {:class "bg-img-chevron-header rotate-0 w-6 h-6 bg-center bg-no-repeat"}]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]]]])
+      [:ul {:class style-22}
+       [:li {:class (str style/outer-margin " " style-32)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div
+           [:p {:class "text-black text-base font-bold"} "BKK"]
+           [:p {:class style-71} "1,000 price reported"]]
+          [:div {:class style-61}
+           [:p {:class style-72} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:section {:class style-52}
+          [:ul {:class "list-reset relative h-12"}
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "25.47852647357379%" :width "9.2%" :left "0.0%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "64.8812465700313%" :width "9.2%" :left "10.088999999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm bg-green"
+                 :style {:height "90.0%" :width "9.2%" :left "20.177999999999997%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "87.13963308321102%" :width "9.2%" :left "30.266999999999996%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "67.52112313949745%" :width "9.2%" :left "40.355999999999995%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "45.353413557835005%" :width "9.2%" :left "50.44499999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "27.73509276853321%" :width "9.2%" :left "60.53399999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "15.9343642264091%" :width "9.2%" :left "70.62299999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "8.78125342288431%" :width "9.2%" :left "80.71199999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "4.708083644125027%" :width "9.2%" :left "90.80099999999999%"}}]]
+          [:div {:class "flex justify-between pt-1"}
+           [:p {:class "text-grey-darker font-normal text-xs"} "$7.25"]
+           [:p {:class "text-grey-darker font-normal text-xs"} "$30.45"]]]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div
+           [:p {:class "text-black text-base font-bold"} "BKK"]
+           [:p {:class style-71} "1,000 price reported"]]
+          [:div {:class style-61}
+           [:p {:class style-72} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:section {:class style-52}
+          [:ul {:class "list-reset relative h-12"}
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "25.47852647357379%" :width "9.2%" :left "0.0%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "64.8812465700313%" :width "9.2%" :left "10.088999999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm bg-green"
+                 :style {:height "90.0%" :width "9.2%" :left "20.177999999999997%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "87.13963308321102%" :width "9.2%" :left "30.266999999999996%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "67.52112313949745%" :width "9.2%" :left "40.355999999999995%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "45.353413557835005%" :width "9.2%" :left "50.44499999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "27.73509276853321%" :width "9.2%" :left "60.53399999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "15.9343642264091%" :width "9.2%" :left "70.62299999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "8.78125342288431%" :width "9.2%" :left "80.71199999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "4.708083644125027%" :width "9.2%" :left "90.80099999999999%"}}]]
+          [:div {:class "flex justify-between pt-1"}
+           [:p {:class "text-grey-darker font-normal text-xs"} "$7.25"]
+           [:p {:class "text-grey-darker font-normal text-xs"} "$30.45"]]]]]
+       [:li {:class (str style/outer-margin " " style-32)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div
+           [:p {:class "text-black text-base font-bold"} "BKK"]
+           [:p {:class style-71} "1,000 price reported"]]
+          [:div {:class style-61}
+           [:p {:class style-72} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:section {:class style-52}
+          [:ul {:class "list-reset relative h-12"}
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "25.47852647357379%" :width "9.2%" :left "0.0%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "64.8812465700313%" :width "9.2%" :left "10.088999999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm bg-green"
+                 :style {:height "90.0%" :width "9.2%" :left "20.177999999999997%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "87.13963308321102%" :width "9.2%" :left "30.266999999999996%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "67.52112313949745%" :width "9.2%" :left "40.355999999999995%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "45.353413557835005%" :width "9.2%" :left "50.44499999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "27.73509276853321%" :width "9.2%" :left "60.53399999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "15.9343642264091%" :width "9.2%" :left "70.62299999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "8.78125342288431%" :width "9.2%" :left "80.71199999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "4.708083644125027%" :width "9.2%" :left "90.80099999999999%"}}]]
+          [:div {:class "flex justify-between pt-1"}
+           [:p {:class "text-grey-darker font-normal text-xs"} "$7.25"]
+           [:p {:class "text-grey-darker font-normal text-xs"} "$30.45"]]]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div
+           [:p {:class "text-black text-base font-bold"} "BKK"]
+           [:p {:class style-71} "1,000 price reported"]]
+          [:div {:class style-61}
+           [:p {:class style-72} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:section {:class style-52}
+          [:ul {:class "list-reset relative h-12"}
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "25.47852647357379%" :width "9.2%" :left "0.0%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "64.8812465700313%" :width "9.2%" :left "10.088999999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm bg-green"
+                 :style {:height "90.0%" :width "9.2%" :left "20.177999999999997%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "87.13963308321102%" :width "9.2%" :left "30.266999999999996%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "67.52112313949745%" :width "9.2%" :left "40.355999999999995%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "45.353413557835005%" :width "9.2%" :left "50.44499999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "27.73509276853321%" :width "9.2%" :left "60.53399999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "15.9343642264091%" :width "9.2%" :left "70.62299999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "8.78125342288431%" :width "9.2%" :left "80.71199999999999%"}}]
+           [:li {:class "absolute bg-grey-light pin-b rounded-t-sm"
+                 :style {:height "4.708083644125027%" :width "9.2%" :left "90.80099999999999%"}}]]
+          [:div {:class "flex justify-between pt-1"}
+           [:p {:class "text-grey-darker font-normal text-xs"} "$7.25"]
+           [:p {:class "text-grey-darker font-normal text-xs"} "$30.45"]]]]]
+       [:li {:class (str style/outer-margin " " style-34)}
+        [:a {:href "#" :class "no-underline flex justify-between items-center"}
+         [:p {:class "text-grey-darker text-sm"} "More popular areas in Phnom Penh"]
+         [:span {:class "bg-img-chevron-header rotate-0 w-6 h-6 bg-center bg-no-repeat"}]]]
+       [:li {:class (str style/outer-margin " " style-35)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-36)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-36)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-36)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-35)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-36)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-36)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-36)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-52}
+          [:div
+           [:p {:class "text-black text-sm font-bold"} "BKK"]
+           [:p {:class "text-grey-darker text-sm mt-2"} "1,000 price reported"]]
+          [:div {:class "flex items-baseline mt-3"}
+           [:p {:class "text-lg text-black font-bold mr-2"} "$12.34"]
+           [:p {:class "text-grey-darker text-sm"} "/ month"]]]
+         [:p {:class style-53} "AAA"]]]]]]))
 
 
 (rum/defc Neighborhoods []
-  [:div {:class "bg-grey-light pb-2"}
-   [:section {:class (str style/zoomed-font " bg-white")}
-    [:header {:class (str style/outer-margin " py-3 text-lg font-bold text-black")}
-     [:span {:class "bg-img-house bg-no-repeat bg-left pl-8"} "Phnom Penh Neighborhoods"]]
-    [:ul {:class "list-reset"}
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex items-start bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
-       [:div
-        [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
-        [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex items-start bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
-       [:div
-        [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
-        [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex items-start bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
-       [:div
-        [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
-        [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex items-start bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
-       [:div
-        [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
-        [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between items-center"}
-       [:p {:class "text-grey-darker text-sm"} "More neighborhoods"]
-       [:span {:class "bg-img-chevron-header rotate-180 w-6 h-6 bg-center bg-no-repeat"}]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"}
-       [:p {:class "text-black text-sm font-normal"} "AAA"]]]]]])
-
-
-(rum/defc Language []
-  [:div {:class "bg-grey-light pb-2"}
-   [:section {:class (str style/zoomed-font " bg-white")}
-    [:ul {:class "list-reset"}
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between items-center"}
-       [:p {:class "text-black text-sm font-normal"} "ភាសាខ្មែរ"]
-       [:input {:type "checkbox" :checked false}]]]
-     [:li {:class (str style/outer-margin " py-3 border-t")}
-      [:a {:href "#" :class "no-underline flex justify-between items-center"}
-       [:p {:class "text-black text-sm font-normal"} "English (US)"]
-       [:input {:type "checkbox" :checked true}]]]]]])
+  (let [style-32 (style/style {:sm "py-3 border-t"
+                               :lg "lg:w-1/3"})
+        style-33 (style/style {:sm "py-3 border-t"
+                               :lg "lg:border-l lg:w-1/3"})
+        style-34 (style/style {:sm "py-3 border-t"
+                               :lg "lg:hidden"})
+        style-41 (style/style {:sm "no-underline flex items-start bg-img-chevron bg-pos-x-right bg-pos-y-center bg-no-repeat pr-6"
+                               :lg "lg:bg-img-none lg:pr-0"})
+        style-51 (style/style {:sm "hidden"
+                               :lg "lg:block lg:flex lg:items-start"})
+        style-52 (style/style {:sm "text-black text-sm font-normal"
+                               :lg "lg:hidden"})]
+    [:div {:class style-02}
+     [:section {:class style-11}
+      [:header {:class style-21}
+       [:span {:class (style-31 "bg-img-house")} "Phnom Penh Neighborhoods"]]
+      [:ul {:class style-22}
+       [:li {:class (str style/outer-margin " " style-32)}
+        [:a {:href "#" :class style-41}
+         [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+         [:div
+          [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+          [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+         [:div
+          [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+          [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+         [:div
+          [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+          [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
+       [:li {:class (str style/outer-margin " " style-32)}
+        [:a {:href "#" :class style-41}
+         [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+         [:div
+          [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+          [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]]
+       [:li {:class (str style/outer-margin " " style-34)}
+        [:a {:href "#" :class "no-underline flex justify-between items-center"}
+         [:p {:class "text-grey-darker text-sm"} "More neighborhoods"]
+         [:span {:class "bg-img-chevron-header rotate-180 w-6 h-6 bg-center bg-no-repeat"}]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-32)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-32)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]
+       [:li {:class (str style/outer-margin " " style-33)}
+        [:a {:href "#" :class style-41}
+         [:div {:class style-51}
+          [:div {:class "mr-3"} [:img {:src "https://via.placeholder.com/50"}]]
+          [:div
+           [:p {:class "text-black text-base font-bold pt-1"} "BKK"]
+           [:p {:class "text-grey-darker text-sm pt-1"} "1,000 price reported"]]]
+         [:p {:class style-52} "AAA"]]]]]]))
 
 
 (rum/defc AreaHeader []
@@ -417,18 +702,6 @@
          [:span {:class "text-sm font-normal bg-yellow-lighter px-1"} "5"]]]]]]]])
 
 
-(rum/defc Index [text]
-  [:div
-   (Header)
-   (ItemDetailsHeader)
-   (ItemComparison)
-   (ListingsInArea)
-   (Neighborhoods)
-   (Notes)
-   (Language)
-   (Footer)])
-
-
 (rum/defc DetailsPage [text]
   [:div
    (Header)
@@ -437,7 +710,6 @@
    (ListingsInArea)
    (Neighborhoods)
    (Notes)
-   (Language)
    (Footer)])
 
 
@@ -449,7 +721,6 @@
    (ListingsInArea)
    (Neighborhoods)
    (Notes)
-   (Language)
    (Footer)])
 
 
@@ -458,5 +729,8 @@
    (Header)
    (PopularLocation)
    (Neighborhoods)
-   (Language)
    (Footer)])
+
+
+(rum/defc Index [text]
+  (Home text))
